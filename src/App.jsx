@@ -2,6 +2,9 @@ import { useState } from "react";
 import "./App.css";
 
 function ListProduct() {
+  const [selectedProducts, setSelectedProducts] = useState([]);
+  console.log(selectedProducts);
+
   const products = [
     {
       image: "/images/waffle-mb.png",
@@ -58,35 +61,50 @@ function ListProduct() {
       price: 6.5,
     },
   ];
-  return (
-<>
-    <div className="container">
-      <div className="product-container">
-    {products.map((x,category) => 
-    <div key={category} className="content">
-      <img src={x.image} alt="" />
-      <p>{ x.name }</p>
-      <p>{x.category }</p>
-      <p>${x.price }</p>
 
-    </div>
-    )}
-    </div>
-    </div>
-  
-  </>
+  const handleAddToCart = (product) => {
+    setSelectedProducts([...selectedProducts, product]);
+  };
+
+  return (
+    <>
+      <div className="container">
+        <div className="product-container">
+          {products.map((product, index) => (
+            <div key={index} className="content">
+              <img src={product.image} alt="" />
+              <button className="btns" onClick={() => handleAddToCart(product)}>
+              <i class="fa-solid fa-cart-shopping"></i>Add To Cart
+              </button>
+              <p>{product.name}</p>
+              <h2>{product.category}</h2>
+              <h5>${product.price}</h5>
+            </div>
+          ))}
+        </div>
+
+        {selectedProducts.length > 0 && (
+          <div className="selected-products">
+            <h2>Selected Products</h2>
+            {selectedProducts.map((product, index) => (
+              <div key={index} className="selected-product">
+                <p>Name: {product.name}</p>
+                <p>Price: ${product.price}</p>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </>
   );
-   
 }
 
 function App() {
   return (
     <>
-<ListProduct/>
-
+      <ListProduct />
     </>
-  )
-
+  );
 }
 
 export default App;

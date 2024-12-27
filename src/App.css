@@ -1,77 +1,124 @@
-/* 1. Use a more-intuitive box-sizing model */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+*, *::before, *::after{
+  box-sizing: border-box; 
 }
 
-/* 2. Remove default margin */
-* {
-  margin: 0;
+*{
+  margin: 0; 
+  padding: 0; 
 }
 
-body {
-  /* 3. Add accessible line-height */
-  line-height: 1.5;
-  /* 4. Improve text rendering */
-  -webkit-font-smoothing: antialiased;
+ul[role='list'], ol[role='list']{
+  list-style: none; 
 }
 
-/* 5. Improve media defaults */
-img,
-picture,
-video,
-canvas,
-svg {
-  display: block;
+html:focus-within{
+  scroll-behavior: smooth; 
+}
+
+a:not([class]){
+  text-decoration-skip-ink: auto; 
+}
+
+img, picture, svg, video, canvas{
   max-width: 100%;
+  height: auto; 
+  vertical-align: middle; 
+  font-style: italic; 
+  background-repeat: no-repeat; 
+  background-size: cover;
 }
 
-/* 6. Inherit fonts for form controls */
-input,
-button,
-textarea,
-select {
-  font: inherit;
+input, button, textarea, select{
+  font: inherit; 
 }
 
-/* 7. Avoid text overflows */
-p,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  overflow-wrap: break-word;
+@media (prefers-reduced-motion: reduce){
+  html:focus-within {
+      scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+      transition: none;
+  }
 }
 
-/* 8. Improve line wrapping */
-p {
-  text-wrap: pretty;
-}
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  text-wrap: balance;
+body, html{
+  height: 100%; 
+  scroll-behavior: smooth; 
 }
 
-/*
-  9. Create a root stacking context
-*/
-#root,
-#__next {
-  isolation: isolate;
-}
 body {
-  background-color: white;
+  background-color: #fcf8f6;
   color: black;
+  font-family: "Red Hat Text", serif;
+}
+.container {
+  display: flex;
 }
 .product-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px;
+  margin-left: 50px;
+}
+.content {
+  position: relative;
+}
+.content p {
+  color: #87635A;
+font-size: 14px;
+font-weight: 400;
+line-height: 18.52px;
+}
+.content h2 {
+  color: #260F08;
+font-size: 16px;
+font-weight: 600;
+line-height: 21.17px;
+}
+.content h5 {
+  color: #C73B0F;
+font-size: 16px;
+font-weight: 600;
+line-height: 21.17px;
+}
+.content img{
+  margin-bottom: 32px;
+}
+.content button {
+  position: absolute;
+  left: 80px;
+  top: 188px;
+  background-color: white;
+  color: black;
+  padding: 12.5px 28px;
+  border-radius: 25px;
+  border: 1px solid #ad8a85;
+
+}
+.selected-products {
+  margin-left: 50px; 
+}
+.selected-products h2 {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.selected-product {
+  margin-bottom: 10px;
+}
+.btns {
+font-size: 14px;
+font-weight: 600;
+line-height: 18.52px;
+color: #260F08;
+}
+.content i {
+  margin-right: 10px;
+  color: #C73B0F;
 }
